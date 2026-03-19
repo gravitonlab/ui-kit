@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Header } from "../Header/Header";
-import "./Page.scss";
+import { Header } from "../Header";
+import "./styles.scss";
 
 type User = {
   name: string;
