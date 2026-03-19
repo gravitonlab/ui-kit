@@ -19,7 +19,7 @@ const dirname =
 export default defineConfig({
   plugins: [
     react(),
-    dts({ insertTypesEntry: true }),
+    dts({ tsconfigPath: "./tsconfig.app.json", insertTypesEntry: true }),
     babel({
       presets: [reactCompilerPreset()],
     }),
