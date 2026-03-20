@@ -1,5 +1,5 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from "vite";
+import { defineConfig, esmExternalRequirePlugin } from "vite";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
 
@@ -36,12 +36,21 @@ export default defineConfig({
       formats: ["es", "umd"],
     },
     rolldownOptions: {
-      external: ["react"],
-      output: {
-        globals: {
-          react: "React",
-        },
-      },
+      // external: ["react", "react-dom"],
+      // output: {
+      //   globals: {
+      //     react: "React",
+      //     "react-dom": "ReactDOM",
+      //   },
+      // },
+      plugins: [
+        esmExternalRequirePlugin({
+          external: [/^react(-dom)?(\/.+)?$/],
+        }),
+      ],
+    },
+    commonjsOptions: {
+      transformMixedEsModules: true,
     },
   },
   test: {

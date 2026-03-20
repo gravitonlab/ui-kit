@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Header } from "../Header";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 type User = {
   name: string;
@@ -19,7 +19,7 @@ export const Page: React.FC = () => {
         onCreateAccount={() => setUser({ name: "Jane Doe" })}
       />
 
-      <section className="storybook-page">
+      <section className={styles["storybook-page"]}>
         <h2>Pages in Storybook</h2>
         <p>
           We recommend building UIs with a{" "}
@@ -66,7 +66,7 @@ export const Page: React.FC = () => {
           </a>
           .
         </p>
-        <div className="tip-wrapper">
+        <div className={styles["tip-wrapper"]}>
           <span className="tip">Tip</span> Adjust the width of the canvas with
           the{" "}
           <svg

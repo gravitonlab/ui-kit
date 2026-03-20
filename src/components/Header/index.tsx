@@ -1,5 +1,5 @@
 import { Button } from "../Button";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 type User = {
   name: string;
@@ -19,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   onCreateAccount,
 }) => (
   <header>
-    <div className="storybook-header">
+    <div className={styles["storybook-header"]}>
       <div>
         <svg
           width="32"
@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div>
         {user ? (
           <>
-            <span className="welcome">
+            <span className={styles["welcome"]}>
               Welcome, <b>{user.name}</b>!
             </span>
             <Button size="small" onClick={onLogout} label="Log out" />
