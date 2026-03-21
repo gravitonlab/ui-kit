@@ -1,23 +1,21 @@
 {
   "name": "gravitonlab-ui-kit",
   "private": false,
-  "version": "1.0.6",
+  "version": "1.0.9",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/gravitonlab-ui-kit.umd.js",
-  "module": "./dist/gravitonlab-ui-kit.es.js",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "types": "./dist/gravitonlab-ui-kit.es.d.ts",
-      "import": "./dist/gravitonlab-ui-kit.es.js"
-    }
-  },
+  "main": "./dist/main.js",
+  "module": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b ./tsconfig.lib.json && vite build",
+    "prepublishOnly": "pnpm run build",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",

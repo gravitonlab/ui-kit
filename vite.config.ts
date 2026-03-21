@@ -4,11 +4,13 @@ import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
 
 // https://vite.dev/config/
-import path, { resolve } from "node:path";
+import path, { extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import { playwright } from "@vitest/browser-playwright";
 import dts from "vite-plugin-dts";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
+import { globSync } from "node:fs";
 
 const dirname =
   typeof __dirname !== "undefined"
@@ -19,10 +21,12 @@ const dirname =
 export default defineConfig({
   plugins: [
     react(),
-    dts({ tsconfigPath: "./tsconfig.app.json", insertTypesEntry: true }),
-    babel({
-      presets: [reactCompilerPreset()],
+    dts({
+      tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
+      insertTypesEntry: true,
     }),
+    babel({ presets: [reactCompilerPreset()] }),
+    libInjectCss(),
   ],
   server: {
     open: true,
@@ -30,19 +34,25 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
-      name: "gravitonlab-ui-kit",
-      fileName: (format) => `gravitonlab-ui-kit.${format}.js`,
-      formats: ["es", "umd"],
+      entry: resolve(__dirname, "lib/main.ts"),
+      formats: ["es"],
     },
     rolldownOptions: {
-      // external: ["react", "react-dom"],
-      // output: {
-      //   globals: {
-      //     react: "React",
-      //     "react-dom": "ReactDOM",
-      //   },
-      // },
+      input: Object.fromEntries(
+        globSync("lib/**/*.{ts,tsx}", {
+          exclude: ["lib/**/*.d.ts"],
+        }).map((file) => [
+          // The name of the entry point
+          // lib/nested/foo.ts becomes nested/foo
+          relative("lib", file.slice(0, file.length - extname(file).length)),
+          // The absolute path to the entry file
+          // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
+          fileURLToPath(new URL(file, import.meta.url)),
+        ]),
+      ),
+      output: {
+        entryFileNames: "[name].js",
+      },
       plugins: [
         esmExternalRequirePlugin({
           external: [/^react(-dom)?(\/.+)?$/],
