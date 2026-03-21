@@ -1,11 +1,11 @@
-import { Button } from "../lib/main";
+import { Button, Gap } from "../lib/main";
 
 const App: React.FC = () => {
   return (
-    <div>
+    <Gap flexDirection="column" alignItems="flex-start">
       <Button label="Test" />
       <Button label="Test" />
-    </div>
+    </Gap>
   );
 };
 
