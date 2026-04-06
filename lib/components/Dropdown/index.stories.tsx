@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Grid } from "..";
 
 const meta = {
+  tags: ["autodocs"],
   component: Dropdown,
 } satisfies Meta<typeof Dropdown>;
 

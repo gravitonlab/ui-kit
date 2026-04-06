@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Gap } from ".";
 
 const meta = {
-  title: "Gap",
   component: Gap,
 } satisfies Meta<typeof Gap>;
 

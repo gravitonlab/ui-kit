@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Grid } from "./index";
 
 const meta = {
-  title: "Grid",
   component: Grid,
 } satisfies Meta<typeof Grid>;
 
