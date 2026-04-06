@@ -1,0 +1,135 @@
+@use "../../styles/colors.scss" as *;
+@use "sass:map";
+
+.root {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  font-family: inherit;
+
+  &--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 8px;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 14px;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  &__selected {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .arrow {
+    flex-shrink: 0;
+    width: 0;
+    height: 0;
+    margin-left: 8px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    transition: transform 0.2s ease;
+  }
+
+  &--open .arrow {
+    transform: rotate(180deg);
+  }
+
+  .list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 4px 0;
+    list-style: none;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+
+  .option {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s;
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+    }
+
+    &--selected {
+      font-weight: 500;
+    }
+  }
+}
+
+@mixin dropdown-styles($color-map) {
+  .trigger {
+    color: map.get($color-map, 2);
+    border: 1px solid map.get($color-map, 9);
+
+    &:hover:not(:disabled) {
+      border-color: map.get($color-map, 7);
+      background-color: oklch(from map.get($color-map, 12) l c h / 0.4);
+    }
+
+    &:focus-visible {
+      outline: 2px solid map.get($color-map, 7);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background: map.get($gray, 12);
+      color: map.get($gray, 1);
+    }
+  }
+
+  .arrow {
+    border-top: 6px solid map.get($color-map, 7);
+  }
+
+  .list {
+    border: 1px solid map.get($gray, 12);
+  }
+
+  .option {
+    color: map.get($color-map, 2);
+
+    &:hover,
+    &:focus-visible {
+      background: oklch(from map.get($color-map, 12) l c h / 0.3);
+    }
+
+    &--selected {
+      background: oklch(from map.get($color-map, 12) l c h / 0.8);
+      color: map.get($gray, 4);
+      font-weight: 500;
+    }
+  }
+}
+
+@each $name, $map in $colors-map {
+  .#{$name} {
+    @include dropdown-styles($map);
+  }
+}

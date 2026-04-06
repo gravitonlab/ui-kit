@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.base.json",
-  "include": ["src", "lib"]
+  "include": ["src", "lib", ".storybook/decorators/withStoryWrapper.tsx"]
 }

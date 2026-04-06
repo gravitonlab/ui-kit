@@ -1,41 +1,30 @@
+import { useTheme } from "../../main";
 import styles from "./styles.module.scss";
+import cx from "clsx";
 
 export interface ButtonProps {
-  /** Is this the principal call to action on the page? */
-  primary?: boolean;
-  /** What background color to use */
-  backgroundColor?: string;
-  /** How large should the button be? */
+  use?: "primary" | "secondary";
   size?: "small" | "medium" | "large";
-  /** Button contents */
-  label: string;
-  /** Optional click handler */
+  children?: React.ReactNode;
   onClick?: () => void;
 }
 
 /** Primary UI component for user interaction */
 export const Button: React.FC<ButtonProps> = ({
-  primary = false,
+  use = "secondary",
   size = "medium",
-  backgroundColor,
-  label,
+  children,
   ...props
 }) => {
-  const mode = primary
-    ? styles["storybook-button--primary"]
-    : styles["storybook-button--secondary"];
+  const { color } = useTheme();
+
   return (
     <button
       type="button"
-      className={[
-        styles["storybook-button"],
-        styles[`storybook-button--${size}`],
-        mode,
-      ].join(" ")}
-      style={{ backgroundColor }}
+      className={cx(styles.root, styles[size], styles[color], styles[use])}
       {...props}
     >
-      {label}
+      {children}
     </button>
   );
 };

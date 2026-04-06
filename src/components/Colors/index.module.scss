@@ -1,0 +1,13 @@
+@use "../../../lib/styles/colors.scss" as *;
+@use "sass:map";
+
+.root {
+  @each $name, $map in $colors-map {
+    .#{$name} {
+      width: 500px;
+      height: 24px;
+      border-radius: 4px;
+      background-color: map.get($map, 11);
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import cx from "clsx";
 import React from "react";
 
-import styles from "./index.module.scss";
+import styles from "./styles.module.scss";
 
 type FlexStyleProps = Pick<
   React.CSSProperties,
