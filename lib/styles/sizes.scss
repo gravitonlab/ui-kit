@@ -1,42 +1,52 @@
 $tiny-size: (
-  "height": 28px,
-  "font-size": 12px,
-  "paddingX": 12px,
-  "paddingY": 6px,
+  height: 28px,
+  font-size: 12px,
+  paddingX: 12px,
+  paddingY: 6px,
+  icon-offset: 8px,
+  icon-gap: 5px,
 );
 
 $small-size: (
-  "height": 30px,
-  "font-size": 14px,
-  "paddingX": 14px,
-  "paddingY": 6px,
+  height: 30px,
+  font-size: 14px,
+  paddingX: 14px,
+  paddingY: 6px,
+  icon-offset: 8px,
+  icon-gap: 6px,
 );
 
 $medium-size: (
-  "height": 32px,
-  "font-size": 16px,
-  "paddingX": 16px,
-  "paddingY": 8px,
+  height: 32px,
+  font-size: 16px,
+  paddingX: 15px,
+  paddingY: 8px,
+  icon-offset: 10px,
+  icon-gap: 6px,
 );
 
 $large-size: (
-  "height": 36px,
-  "font-size": 18px,
-  "paddingX": 18px,
-  "paddingY": 8px,
+  height: 36px,
+  font-size: 18px,
+  paddingX: 16px,
+  paddingY: 8px,
+  icon-offset: 10px,
+  icon-gap: 6px,
 );
 
 $extra-large-size: (
-  "height": 40px,
-  "font-size": 22px,
-  "paddingX": 20px,
-  "paddingY": 10px,
+  height: 40px,
+  font-size: 22px,
+  paddingX: 18px,
+  paddingY: 10px,
+  icon-offset: 12px,
+  icon-gap: 6px,
 );
 
 $sizes-map: (
-  "tiny": $tiny-size,
-  "small": $small-size,
-  "medium": $medium-size,
-  "large": $large-size,
-  "extra-large": $extra-large-size,
+  tiny: $tiny-size,
+  small: $small-size,
+  medium: $medium-size,
+  large: $large-size,
+  extra-large: $extra-large-size,
 );

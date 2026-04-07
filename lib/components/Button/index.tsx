@@ -7,6 +7,8 @@ import cx from "clsx";
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   use?: UseProp;
   size?: SizeProp;
+  icon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 }
 
 /** Primary UI component for user interaction */
@@ -15,6 +17,8 @@ export const Button: React.FC<ButtonProps> = ({
   size,
   children,
   className,
+  icon,
+  rightIcon,
   ...props
 }) => {
   const theme = useTheme();
@@ -34,12 +38,16 @@ export const Button: React.FC<ButtonProps> = ({
         styles[resolvedSize],
         styles[resolvedColor],
         styles[`use_${use}`],
+        // !!icon && styles["has-icon"],
+        // !!rightIcon && styles["has-right-icon"],
         className,
       )}
       style={rootStyles}
       {...props}
     >
-      {children}
+      {!!icon && <span className={styles.icon}>{icon}</span>}
+      <span className={styles.children}>{children}</span>
+      {!!rightIcon && <span className={styles.rightIcon}>{rightIcon}</span>}
     </button>
   );
 };

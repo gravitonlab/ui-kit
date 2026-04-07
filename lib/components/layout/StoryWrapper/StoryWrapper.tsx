@@ -8,6 +8,7 @@ import styles from "./StoryWrapper.module.scss";
 import { Dropdown, type DropdownOption } from "../../Dropdown";
 import { Gap } from "../../Gap";
 import { DEFAULT_THEME } from "../../../theme/ThemeContext";
+import cx from "clsx";
 
 interface IProps {
   children?: React.ReactNode;
@@ -27,7 +28,7 @@ export const StoryWrapper: React.FC<IProps> = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ ...DEFAULT_THEME, color: themeColor }}>
-      <div className={styles.header}>
+      <div className={cx(styles.header, styles[themeColor])}>
         <Gap>
           <Gap.End>
             <Gap gap={12} alignItems="center">

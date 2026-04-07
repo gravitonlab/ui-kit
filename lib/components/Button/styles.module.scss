@@ -8,6 +8,7 @@ $transition-duration: 150ms;
 .root {
   display: inline-flex;
   align-items: center;
+  gap: 4px;
   justify-content: center;
   cursor: pointer;
   border: 0;
@@ -26,6 +27,11 @@ $transition-duration: 150ms;
     opacity: 0.35;
     cursor: default;
     pointer-events: none;
+  }
+
+  .icon,
+  .rightIcon {
+    display: flex;
   }
 }
 
@@ -52,6 +58,16 @@ $transition-duration: 150ms;
   height: map.get($size-map, height);
   font-size: map.get($size-map, font-size);
   padding: 0 map.get($size-map, paddingX);
+
+  &:has(.icon) {
+    padding-left: map.get($size-map, icon-offset);
+    gap: map.get($size-map, icon-gap);
+  }
+
+  &:has(.rightIcon) {
+    padding-right: map.get($size-map, icon-offset);
+    gap: map.get($size-map, icon-gap);
+  }
 }
 
 @mixin button-use-styles($use-map) {

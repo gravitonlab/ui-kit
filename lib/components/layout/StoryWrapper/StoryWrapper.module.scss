@@ -1,5 +1,19 @@
+@use "../../../styles/colors.scss" as *;
+@use "sass:map";
+
 .header {
   padding: 20px;
   background-color: aliceblue;
   margin-bottom: 24px;
+  border-radius: 8px;
+}
+
+@mixin header-color-styles($color-map) {
+  background-color: oklch(from map.get($color-map, 12) l c h / 40%);
+}
+
+@each $name, $map in $colors-map {
+  .#{$name} {
+    @include header-color-styles($map);
+  }
 }

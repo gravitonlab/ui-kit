@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
 import { fn } from "storybook/test";
-
 import { Button } from ".";
 import { withControlWrapper } from "../layout/decorators/withStoryWrapper";
+import { Plus } from "lucide-react";
 
 const meta = {
   component: Button,
@@ -24,6 +23,8 @@ export const Playground = () => {
       <div>Outline</div>
       <div>Fill</div>
       <div>Danger</div>
+      <div>Left Icon</div>
+      <div>Righ Icon</div>
 
       <span>Tiny</span>
       <Button size="tiny">Button</Button>
@@ -37,6 +38,12 @@ export const Playground = () => {
         Button
       </Button>
       <Button use="danger" size="tiny">
+        Button
+      </Button>
+      <Button icon={<Plus size="14" />} size="tiny">
+        Button
+      </Button>
+      <Button rightIcon={<Plus size="14" />} size="tiny">
         Button
       </Button>
 
@@ -54,6 +61,12 @@ export const Playground = () => {
       <Button use="danger" size="small">
         Button
       </Button>
+      <Button icon={<Plus size="16" />} size="small">
+        Button
+      </Button>
+      <Button rightIcon={<Plus size="16" />} size="small">
+        Button
+      </Button>
 
       <span>Medium</span>
       <Button size="medium">Button</Button>
@@ -67,6 +80,12 @@ export const Playground = () => {
         Button
       </Button>
       <Button use="danger" size="medium">
+        Button
+      </Button>
+      <Button icon={<Plus size="16" />} size="medium">
+        Button
+      </Button>
+      <Button rightIcon={<Plus size="16" />} size="medium">
         Button
       </Button>
 
@@ -84,6 +103,12 @@ export const Playground = () => {
       <Button use="danger" size="large">
         Button
       </Button>
+      <Button icon={<Plus size="18" />} size="large">
+        Button
+      </Button>
+      <Button rightIcon={<Plus size="18" />} size="large">
+        Button
+      </Button>
 
       <span>Extra Large</span>
       <Button size="extra-large">Button</Button>
@@ -97,6 +122,12 @@ export const Playground = () => {
         Button
       </Button>
       <Button use="danger" size="extra-large">
+        Button
+      </Button>
+      <Button icon={<Plus size="20" />} size="extra-large">
+        Button
+      </Button>
+      <Button rightIcon={<Plus size="20" />} size="extra-large">
         Button
       </Button>
     </>
