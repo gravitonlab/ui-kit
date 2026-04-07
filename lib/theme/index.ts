@@ -1,7 +1,7 @@
 export { ThemeProvider } from "./ThemeProvider";
 export { useTheme } from "./useTheme";
 export { ThemeContext } from "./ThemeContext";
-export type { ThemeContextValue } from "./ThemeContext";
+export type { ThemeContextProps as ThemeContextValue } from "./ThemeContext";
 export type { ThemeMode } from "./types";
 export type { ColorFamilyType } from "./colors";
 export * from "./colors";

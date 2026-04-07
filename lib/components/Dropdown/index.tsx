@@ -8,6 +8,7 @@ import React, {
 import styles from "./styles.module.scss";
 import cx from "clsx";
 import { useTheme } from "../../theme";
+import type { SizeProp } from "../../theme/types";
 
 export interface DropdownOption {
   value: string | number;
@@ -18,24 +19,31 @@ export interface DropdownProps {
   width?: number;
   options: DropdownOption[];
   value?: string | number;
-  onChange?: (value: string | number) => void;
+  size?: SizeProp;
   placeholder?: string;
   disabled?: boolean;
   className?: string;
+  onChange?: (value: string | number) => void;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
   width,
   options,
   value,
+  size,
   onChange,
   placeholder = "Выберите...",
   disabled = false,
   className = "",
 }) => {
-  const { color } = useTheme();
+  const theme = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const rootStyles: React.CSSProperties = {
+    width,
+    borderRadius: theme.borderRadius,
+  };
 
   // Закрытие при клике вне компонента
   useEffect(() => {
@@ -88,11 +96,13 @@ export const Dropdown: React.FC<DropdownProps> = ({
       ref={containerRef}
       className={cx(
         styles.root,
-        styles[color],
+        styles[size || theme.size],
+        styles[theme.color],
         className,
         isOpen && styles["root--open"],
         disabled && styles["root--disabled"],
       )}
+      style={rootStyles}
       onKeyDown={handleKeyDown}
     >
       <button
@@ -102,9 +112,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         disabled={disabled}
-        style={{ width }}
+        style={rootStyles}
       >
-        <span className={styles["root__selected"]}>
+        <span className={styles.selected}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <span className={styles.arrow} aria-hidden="true" />

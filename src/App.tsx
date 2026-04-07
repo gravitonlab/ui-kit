@@ -5,7 +5,7 @@ const App: React.FC = () => {
   return (
     <Gap flexDirection="column" alignItems="flex-start">
       <Button children="Test" />
-      <Button children="Test" use="primary" />
+      <Button children="Test" use="accent" />
 
       <Colors />
     </Gap>

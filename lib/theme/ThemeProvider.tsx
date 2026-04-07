@@ -1,14 +1,14 @@
 import React from "react";
 import { ThemeContext } from "./ThemeContext";
-import type { ColorFamilyType } from ".";
+import type { ThemeContextValue } from ".";
 
 interface ThemeProviderProps {
   children: React.ReactNode;
-  color: ColorFamilyType;
+  theme: ThemeContextValue;
 }
 
-export function ThemeProvider({ children, color }: ThemeProviderProps) {
+export function ThemeProvider({ children, theme }: ThemeProviderProps) {
   return (
-    <ThemeContext.Provider value={{ color }}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
   );
 }

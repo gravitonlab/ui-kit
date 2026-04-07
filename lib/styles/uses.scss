@@ -1,0 +1,28 @@
+@use "./colors.scss" as *;
+@use "sass:map";
+
+$accent-use: ();
+
+$outline-use: (
+  color: map.get($gray, 1),
+  border-color: map.get($gray, 10),
+  bg-color: unset,
+  bg-color-hover: map.get($gray, 13),
+  bg-color-active: map.get($gray, 12),
+);
+
+$fill-use: (
+  color: map.get($gray, 1),
+  border-color: transparent,
+  bg-color: transparent,
+  border-color-hover: transparent,
+  border-color-active: transparent,
+  bg-color-hover: map.get($gray, 13),
+  bg-color-active: map.get($gray, 12),
+);
+
+$uses-map: (
+  "accent": $accent-use,
+  "outline": $outline-use,
+  "fill": $fill-use, // "danger": $danger-use,
+);

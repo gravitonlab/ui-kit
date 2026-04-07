@@ -1,0 +1,42 @@
+$tiny-size: (
+  "height": 28px,
+  "font-size": 12px,
+  "paddingX": 12px,
+  "paddingY": 6px,
+);
+
+$small-size: (
+  "height": 30px,
+  "font-size": 14px,
+  "paddingX": 14px,
+  "paddingY": 6px,
+);
+
+$medium-size: (
+  "height": 32px,
+  "font-size": 16px,
+  "paddingX": 16px,
+  "paddingY": 8px,
+);
+
+$large-size: (
+  "height": 36px,
+  "font-size": 18px,
+  "paddingX": 18px,
+  "paddingY": 8px,
+);
+
+$extra-large-size: (
+  "height": 40px,
+  "font-size": 22px,
+  "paddingX": 20px,
+  "paddingY": 10px,
+);
+
+$sizes-map: (
+  "tiny": $tiny-size,
+  "small": $small-size,
+  "medium": $medium-size,
+  "large": $large-size,
+  "extra-large": $extra-large-size,
+);

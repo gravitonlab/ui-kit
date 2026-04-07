@@ -1,9 +1,9 @@
 @use "../../styles/colors.scss" as *;
+@use "../../styles/sizes.scss" as *;
 @use "sass:map";
 
 .root {
   position: relative;
-  width: 100%;
   max-width: 320px;
   font-family: inherit;
 
@@ -17,7 +17,6 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 12px;
     border-width: 1px;
     border-style: solid;
     border-radius: 8px;
@@ -27,12 +26,12 @@
     transition:
       border-color 0.2s,
       box-shadow 0.2s;
-  }
 
-  &__selected {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    .selected {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   .arrow {
@@ -66,9 +65,8 @@
   }
 
   .option {
-    padding: 8px 12px;
+    font-family: sans-serif;
     cursor: pointer;
-    font-size: 14px;
     transition: background 0.15s;
 
     &:hover,
@@ -93,7 +91,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid map.get($color-map, 7);
+      outline: 2px solid map.get($color-map, 8);
       outline-offset: 2px;
     }
 
@@ -128,8 +126,32 @@
   }
 }
 
+@mixin dropdown-size-styles($size-map) {
+  font-size: map.get($size-map, font-size);
+
+  .trigger {
+    height: map.get($size-map, height);
+    padding: 0 map.get($size-map, paddingX);
+  }
+
+  .selected {
+    font-size: map.get($size-map, font-size);
+  }
+
+  .option {
+    padding: map.get($size-map, paddingY) map.get($size-map, paddingX);
+    font-size: map.get($size-map, font-size);
+  }
+}
+
 @each $name, $map in $colors-map {
   .#{$name} {
     @include dropdown-styles($map);
+  }
+}
+
+@each $name, $map in $sizes-map {
+  .#{$name} {
+    @include dropdown-size-styles($map);
   }
 }
