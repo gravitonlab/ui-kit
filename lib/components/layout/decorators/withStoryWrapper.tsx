@@ -6,7 +6,7 @@ export const withControlWrapper: Decorator = (Story) => (
     width={450}
     alignItems="center"
     justifyItems="flex-start"
-    gridTemplateColumns={"100px repeat(4, auto)"}
+    gridTemplateColumns={"100px repeat(5, auto)"}
     gap={"30px 50px"}
   >
     <Story />

@@ -23,6 +23,7 @@ export const Playground = () => {
       <div>Disabled</div>
       <div>Outline</div>
       <div>Fill</div>
+      <div>Danger</div>
 
       <span>Tiny</span>
       <Button size="tiny">Button</Button>
@@ -33,6 +34,9 @@ export const Playground = () => {
         Button
       </Button>
       <Button use="fill" size="tiny">
+        Button
+      </Button>
+      <Button use="danger" size="tiny">
         Button
       </Button>
 
@@ -47,6 +51,9 @@ export const Playground = () => {
       <Button use="fill" size="small">
         Button
       </Button>
+      <Button use="danger" size="small">
+        Button
+      </Button>
 
       <span>Medium</span>
       <Button size="medium">Button</Button>
@@ -57,6 +64,9 @@ export const Playground = () => {
         Button
       </Button>
       <Button use="fill" size="medium">
+        Button
+      </Button>
+      <Button use="danger" size="medium">
         Button
       </Button>
 
@@ -71,6 +81,9 @@ export const Playground = () => {
       <Button use="fill" size="large">
         Button
       </Button>
+      <Button use="danger" size="large">
+        Button
+      </Button>
 
       <span>Extra Large</span>
       <Button size="extra-large">Button</Button>
@@ -83,18 +96,37 @@ export const Playground = () => {
       <Button use="fill" size="extra-large">
         Button
       </Button>
+      <Button use="danger" size="extra-large">
+        Button
+      </Button>
     </>
   );
 };
 
-export const Primary: Story = {
+export const Accent: Story = {
   args: {
+    use: "accent",
     children: "Button",
   },
 };
 
-export const Secondary: Story = {
+export const Outline: Story = {
   args: {
+    use: "outline",
+    children: "Button",
+  },
+};
+
+export const Fill: Story = {
+  args: {
+    use: "fill",
+    children: "Button",
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    use: "danger",
     children: "Button",
   },
 };

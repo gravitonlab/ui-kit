@@ -14,15 +14,25 @@ $outline-use: (
 $fill-use: (
   color: map.get($gray, 1),
   border-color: transparent,
-  bg-color: transparent,
   border-color-hover: transparent,
   border-color-active: transparent,
+  bg-color: transparent,
   bg-color-hover: map.get($gray, 13),
   bg-color-active: map.get($gray, 12),
+);
+
+$danger-use: (
+  border-color: map.get($tomato, 8),
+  border-color-hover: map.get($tomato, 7),
+  border-color-active: map.get($tomato, 6),
+  bg-color: map.get($tomato, 8),
+  bg-color-hover: map.get($tomato, 7),
+  bg-color-active: map.get($tomato, 6),
 );
 
 $uses-map: (
   "accent": $accent-use,
   "outline": $outline-use,
-  "fill": $fill-use, // "danger": $danger-use,
+  "fill": $fill-use,
+  "danger": $danger-use,
 );
