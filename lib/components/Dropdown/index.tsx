@@ -8,7 +8,7 @@ import React, {
 import styles from "./styles.module.scss";
 import cx from "clsx";
 import { useTheme } from "../../theme";
-import type { SizeProp } from "../../theme/types";
+import type { SizeProp, UseProp } from "../../theme/types";
 
 export interface DropdownOption {
   value: string | number;
@@ -19,6 +19,7 @@ export interface DropdownProps {
   width?: number;
   options: DropdownOption[];
   value?: string | number;
+  use?: UseProp;
   size?: SizeProp;
   placeholder?: string;
   disabled?: boolean;
@@ -30,6 +31,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   width,
   options,
   value,
+  use = "accent",
   size,
   onChange,
   placeholder = "Выберите...",
@@ -97,6 +99,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       className={cx(
         styles.root,
         styles[size || theme.size],
+        styles[`use_${use}`],
         styles[theme.color],
         className,
         isOpen && styles["root--open"],

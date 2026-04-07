@@ -22,12 +22,14 @@ $fill-use: (
 );
 
 $danger-use: (
+  color: #fff,
   border-color: map.get($tomato, 8),
   border-color-hover: map.get($tomato, 7),
   border-color-active: map.get($tomato, 6),
   bg-color: map.get($tomato, 8),
   bg-color-hover: map.get($tomato, 7),
   bg-color-active: map.get($tomato, 6),
+  dropdown-arrow-icon-color: #fff,
 );
 
 $uses-map: (

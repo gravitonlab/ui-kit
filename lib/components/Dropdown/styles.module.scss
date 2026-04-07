@@ -1,5 +1,6 @@
 @use "../../styles/colors.scss" as *;
 @use "../../styles/sizes.scss" as *;
+@use "../../styles/uses.scss" as *;
 @use "sass:map";
 
 .root {
@@ -62,12 +63,15 @@
     max-height: 240px;
     overflow-y: auto;
     z-index: 10;
+
+    scrollbar-width: thin;
   }
 
   .option {
     font-family: sans-serif;
     cursor: pointer;
     transition: background 0.15s;
+    white-space: nowrap;
 
     &:hover,
     &:focus-visible {
@@ -153,5 +157,59 @@
 @each $name, $map in $sizes-map {
   .#{$name} {
     @include dropdown-size-styles($map);
+  }
+}
+
+@mixin dropdown-use-styles($use-map) {
+  .trigger {
+    @if map.has-key($use-map, bg-color) {
+      background-color: map.get($use-map, bg-color);
+    }
+
+    @if map.has-key($use-map, border-color) {
+      &:not(:hover):not(:active) {
+        border-color: map.get($use-map, border-color);
+      }
+    }
+
+    @if map.has-key($use-map, border-color-hover) {
+      &:hover:not(:disabled) {
+        border-color: map.get($use-map, border-color-hover);
+      }
+    }
+
+    @if map.has-key($use-map, border-color-active) {
+      &:active:not(:disabled) {
+        border-color: map.get($use-map, border-color-active);
+      }
+    }
+
+    @if map.has-key($use-map, color) {
+      color: map.get($use-map, color);
+    }
+
+    @if map.has-key($use-map, bg-color-hover) {
+      &:hover:not(:disabled) {
+        background-color: map.get($use-map, bg-color-hover);
+      }
+    }
+
+    @if map.has-key($use-map, bg-color-active) {
+      &:active:not(:disabled) {
+        background-color: map.get($use-map, bg-color-active);
+      }
+    }
+  }
+
+  @if map.has-key($use-map, dropdown-arrow-icon-color) {
+    .arrow {
+      border-top-color: map.get($use-map, dropdown-arrow-icon-color);
+    }
+  }
+}
+
+@each $name, $map in $uses-map {
+  .use_#{$name} {
+    @include dropdown-use-styles($map);
   }
 }

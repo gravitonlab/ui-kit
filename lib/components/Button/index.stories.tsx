@@ -1,177 +1,74 @@
+import { Fragment } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import { Button } from ".";
 import { withControlWrapper } from "../layout/decorators/withStoryWrapper";
 import { Plus } from "lucide-react";
+import { SIZES_LIST } from "../../theme/variables";
 
 const meta = {
   component: Button,
   tags: ["autodocs"],
-  args: { onClick: fn() },
-  decorators: [withControlWrapper],
+  args: { onClick: fn(), children: "Button" },
+  argTypes: {
+    size: {
+      control: "select",
+      options: ["tiny", "small", "medium", "large", "extra-large"],
+    },
+    use: {
+      control: "select",
+      options: ["accent", "outline", "fill", "danger"],
+    },
+    disabled: { control: "boolean" },
+  },
+  decorators: [withControlWrapper(7)],
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Playground = () => {
-  return (
+const VARIANTS = [
+  { label: "Default", use: "accent" as const },
+  { label: "Disabled", use: "accent" as const, disabled: true },
+  { label: "Outline", use: "outline" as const },
+  { label: "Fill", use: "fill" as const },
+  { label: "Danger", use: "danger" as const },
+  { label: "Left Icon", use: "accent" as const, icon: <Plus size="16" /> },
+  {
+    label: "Right Icon",
+    use: "accent" as const,
+    rightIcon: <Plus size="16" />,
+  },
+];
+
+export const Playground: Story = {
+  render: () => (
     <>
-      <div></div>
-      <div>Default</div>
-      <div>Disabled</div>
-      <div>Outline</div>
-      <div>Fill</div>
-      <div>Danger</div>
-      <div>Left Icon</div>
-      <div>Righ Icon</div>
-
-      <span>Tiny</span>
-      <Button size="tiny">Button</Button>
-      <Button disabled size="tiny">
-        Button
-      </Button>
-      <Button use="outline" size="tiny">
-        Button
-      </Button>
-      <Button use="fill" size="tiny">
-        Button
-      </Button>
-      <Button use="danger" size="tiny">
-        Button
-      </Button>
-      <Button icon={<Plus size="14" />} size="tiny">
-        Button
-      </Button>
-      <Button rightIcon={<Plus size="14" />} size="tiny">
-        Button
-      </Button>
-
-      <span>Small</span>
-      <Button size="small">Button</Button>
-      <Button disabled size="small">
-        Button
-      </Button>
-      <Button use="outline" size="small">
-        Button
-      </Button>
-      <Button use="fill" size="small">
-        Button
-      </Button>
-      <Button use="danger" size="small">
-        Button
-      </Button>
-      <Button icon={<Plus size="16" />} size="small">
-        Button
-      </Button>
-      <Button rightIcon={<Plus size="16" />} size="small">
-        Button
-      </Button>
-
-      <span>Medium</span>
-      <Button size="medium">Button</Button>
-      <Button disabled size="medium">
-        Button
-      </Button>
-      <Button use="outline" size="medium">
-        Button
-      </Button>
-      <Button use="fill" size="medium">
-        Button
-      </Button>
-      <Button use="danger" size="medium">
-        Button
-      </Button>
-      <Button icon={<Plus size="16" />} size="medium">
-        Button
-      </Button>
-      <Button rightIcon={<Plus size="16" />} size="medium">
-        Button
-      </Button>
-
-      <span>Large</span>
-      <Button size="large">Button</Button>
-      <Button disabled size="large">
-        Button
-      </Button>
-      <Button use="outline" size="large">
-        Button
-      </Button>
-      <Button use="fill" size="large">
-        Button
-      </Button>
-      <Button use="danger" size="large">
-        Button
-      </Button>
-      <Button icon={<Plus size="18" />} size="large">
-        Button
-      </Button>
-      <Button rightIcon={<Plus size="18" />} size="large">
-        Button
-      </Button>
-
-      <span>Extra Large</span>
-      <Button size="extra-large">Button</Button>
-      <Button disabled size="extra-large">
-        Button
-      </Button>
-      <Button use="outline" size="extra-large">
-        Button
-      </Button>
-      <Button use="fill" size="extra-large">
-        Button
-      </Button>
-      <Button use="danger" size="extra-large">
-        Button
-      </Button>
-      <Button icon={<Plus size="20" />} size="extra-large">
-        Button
-      </Button>
-      <Button rightIcon={<Plus size="20" />} size="extra-large">
-        Button
-      </Button>
+      {SIZES_LIST.map((size) => (
+        <Fragment key={size}>
+          <span>{size}</span>
+          {VARIANTS.map(({ label, use, disabled, icon, rightIcon }) => (
+            <Button
+              key={`${size}-${label}`}
+              size={size}
+              use={use}
+              disabled={disabled}
+              icon={icon}
+              rightIcon={rightIcon}
+            >
+              Button
+            </Button>
+          ))}
+        </Fragment>
+      ))}
     </>
-  );
+  ),
 };
 
-export const Accent: Story = {
-  args: {
-    use: "accent",
-    children: "Button",
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    use: "outline",
-    children: "Button",
-  },
-};
-
-export const Fill: Story = {
-  args: {
-    use: "fill",
-    children: "Button",
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    use: "danger",
-    children: "Button",
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: "large",
-    children: "Button",
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: "small",
-    children: "Button",
-  },
-};
+// 🎯 Базовые сценарии для Controls и визуального тестирования
+export const Accent: Story = { args: { use: "accent" } };
+export const Outline: Story = { args: { use: "outline" } };
+export const Fill: Story = { args: { use: "fill" } };
+export const Danger: Story = { args: { use: "danger" } };
+export const Large: Story = { args: { size: "large" } };
+export const Small: Story = { args: { size: "small" } };
